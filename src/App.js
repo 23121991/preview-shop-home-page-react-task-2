@@ -1,276 +1,145 @@
-import logo from './logo.svg';
+import { Badge, Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { Cards } from './components/card';
+
+import Stateless from './components/stateless';
 import { useState } from 'react';
-
 function App() {
-    const [cartstatevariable,setstatevalue]=useState(0);
-    const [productid,setid]=useState([{
-        id:1,id:2,id:3,
-    }]);
-    const cartoperations=(e)=> {
-        console.log("hello this is working");
-        if(e.target.innerText==='Add to cart'){
-          setstatevalue(cartstatevariable+1);
-          e.target.innerText="Remove from Cart";
-        }else{
-            setstatevalue(cartstatevariable-1);
-            e.target.innerText="Add to cart";  
-        }
-        }
-
-      
-    
+  const [count, setCount] = useState(0)
+  const[value, setValue]=useState("selva")
+  
+  const data = [
+    {
+    productImage:"https://th.bing.com/th/id/OIP.I2ZnXbGbJn7ZfcjFgVBICwHaEK?w=284&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    productName:"Iphone 14 pro max",
+    price:"$200.00 - $500.00",
+    rating:"⭐⭐⭐⭐⭐"
+   
+  },
+  {
+    productImage:"https://th.bing.com/th/id/OIP.4ZZcNFdO8UWAXH9hIyZcTAHaEU?w=274&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    productName:"Samsung Galaxy s22",
+    price:"$30-$200",
+    rating:"⭐⭐⭐⭐⭐",
+  },
+  {
+    productImage:"https://th.bing.com/th/id/OIP.yzu_DuNVskMsFbb98-3xSAHaEK?w=311&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    productName:"Google pixel",
+    price:"$100-$200",
+    rating:"⭐⭐⭐⭐"
+  
+  },
+  {
+    productImage:"https://th.bing.com/th/id/OIP.3U5kL-4QPX4aoCWY-OChFQHaFe?w=222&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    productName:"One plus",
+    price:"$75-$250",
+    rating:"⭐⭐⭐⭐",
+  },
+  {
+    productImage:"https://th.bing.com/th?q=Redmi+Note+7+Pro+Caracteristicas&w=120&h=120&c=1&rs=1&qlt=90&cb=1&dpr=1.1&pid=InlineBlock&mkt=en-IN&cc=IN&setlang=en&adlt=moderate&t=1&mw=247",
+    productName:"Redmi note 12 pro",
+    price:"$90-$150",
+    rating:"⭐⭐⭐"
+  },
+  {
+    productImage:"https://th.bing.com/th/id/OIP.VfV3VbE0urmJQ1HImQk4oAHaFI?w=238&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    productName:"Vivo v25",
+    price:"$50-$120",
+    rating:"⭐⭐⭐⭐"
+  },
+  {
+    productImage:"https://th.bing.com/th/id/OIP.AbU5vjKcjPQrptXFr5_d1AHaIg?w=169&h=194&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    productName:"Sony Xperia 10",
+    price:"$80-$120",
+    rating:"⭐⭐⭐⭐",
+  },
+  {
+    productImage:"https://th.bing.com/th/id/OIP.a9qDEtC967v_9-JNkYs5rAHaE8?w=263&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    productName:"Samsung Galaxy s23 ultra",
+    price:"$200-$300",
+    rating:"⭐⭐⭐⭐",
+  }
+];
   return (
-  <>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container px-4 px-lg-5">
-                <a className="navbar-brand" href="#!">Start Bootstrap</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li className="nav-item"><a className="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#!">About</a></li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#!">All Products</a></li>
-                                <li><hr className="dropdown-divider" /></li>
-                                <li><a className="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a className="dropdown-item" href="#!">New Arrivals</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form className="d-flex">
-                        <button className="btn btn-outline-dark" type="submit">
-                            <i className="bi-cart-fill me-1"></i>
-                            Cart
-                            <span className="badge bg-dark text-white ms-1 rounded-pill">{cartstatevariable}</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    
-        <header className="bg-dark py-5">
-            <div className="container px-4 px-lg-5 my-5">
-                <div className="text-center text-white">
-                    <h1 className="display-4 fw-bolder">Shop in style</h1>
-                    <p className="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-                </div>
-            </div>
-        </header>
-      
-        <section className="py-5">
-            <div className="container px-4 px-lg-5 mt-5">
-                <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <div className="col mb-5">
-                        <div className="card h-100">
-                            
-                            <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            
-                            <div className="card-body p-4">
-                                <div className="text-center">
-                                    
-                                    <h5 className="fw-bolder">Fancy Product</h5>
-                                   
-                                    $40.00 - $80.00
-                                </div>
-                            </div>
-                         
-                            <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div className="text-center"><a className="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col mb-5">
-                        <div className="card h-100">
-                            
-                            <div className="badge bg-dark text-white position-absolute" style={{top:'0.5rem', right: '0.5rem'}}>Sale</div>
-                            
-                            <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            
-                            <div className="card-body p-4">
-                                <div className="text-center">
-                                    
-                                    <h5 className="fw-bolder">Special Item</h5>
-                                   
-                                    <div className="d-flex justify-content-center small text-warning mb-2">
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                    </div>
-                                   
-                                    <span className="text-muted text-decoration-line-through">$20.00</span>
-                                    $18.00
-                                </div>
-                            </div>
-                         
-                            <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div className="text-center"><a className="btn btn-outline-dark mt-auto" onClick={(e)=>cartoperations(e)} href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col mb-5">
-                        <div className="card h-100">
-                            
-                            <div className="badge bg-dark text-white position-absolute" style={{top: '0.5rem', right: '0.5rem'}}>Sale</div>
-                            
-                            <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            
-                            <div className="card-body p-4">
-                                <div className="text-center">
-                                    
-                                    <h5 className="fw-bolder">Sale Item</h5>
-                                   
-                                    <span className="text-muted text-decoration-line-through">$50.00</span>
-                                    $25.00
-                                </div>
-                            </div>
-                         
-                            <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div className="text-center"><a className="btn btn-outline-dark mt-auto" onClick={(e)=>cartoperations(e)} href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col mb-5">
-                        <div className="card h-100">
-                            
-                            <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            
-                            <div className="card-body p-4">
-                                <div className="text-center">
-                                    
-                                    <h5 className="fw-bolder">Popular Item</h5>
-                                   
-                                    <div className="d-flex justify-content-center small text-warning mb-2">
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                    </div>
-                                
-                                    $40.00
-                                </div>
-                            </div>
-                            
-                            <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div className="text-center"><a className="btn btn-outline-dark mt-auto" onClick={(e)=>cartoperations(e)} href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col mb-5">
-                        <div className="card h-100">
-                           
-                            <div className="badge bg-dark text-white position-absolute" style={{top: '0.5rem', right: '0.5rem'}}>Sale</div>
-                          
-                            <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            
-                            <div className="card-body p-4">
-                                <div className="text-center">
-                                    
-                                    <h5 className="fw-bolder">Sale Item</h5>
-                                   
-                                    <span className="text-muted text-decoration-line-through">$50.00</span>
-                                    $25.00
-                                </div>
-                            </div>
-                         
-                            <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div className="text-center"><a className="btn btn-outline-dark mt-auto" onClick={(e)=>cartoperations(e)} href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col mb-5">
-                        <div className="card h-100">
-                          
-                            <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            
-                            <div className="card-body p-4">
-                                <div className="text-center">
-                                    
-                                    <h5 className="fw-bolder">Fancy Product</h5>
-                                   
-                                    $120.00 - $280.00
-                                </div>
-                            </div>
-                         
-                            <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div className="text-center"><a className="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col mb-5">
-                        <div className="card h-100">
-                            
-                            <div className="badge bg-dark text-white position-absolute" style={{top: '0.5rem', right: '0.5rem'}}>Sale</div>
-                          
-                            <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            
-                            <div className="card-body p-4">
-                                <div className="text-center">
-                                    
-                                    <h5 className="fw-bolder">Special Item</h5>
-                                   
-                                    <div className="d-flex justify-content-center small text-warning mb-2">
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                    </div>
-                                   
-                                    <span className="text-muted text-decoration-line-through">$20.00</span>
-                                    $18.00
-                                </div>
-                            </div>
-                         
-                            <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div className="text-center"><a className="btn btn-outline-dark mt-auto" onClick={(e)=>cartoperations(e)} href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col mb-5">
-                        <div className="card h-100">
-                          
-                            <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            
-                            <div className="card-body p-4">
-                                <div className="text-center">
-                                    
-                                    <h5 className="fw-bolder">Popular Item</h5>
-                                   
-                                    <div className="d-flex justify-content-center small text-warning mb-2">
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                        <div className="bi-star-fill"></div>
-                                    </div>
-                                   
-                                    $40.00
-                                </div>
-                            </div>
-                         
-                            <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div className="text-center"><a className="btn btn-outline-dark mt-auto" onClick={(e)=>cartoperations(e)} href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <footer className="py-5 bg-dark">
-            <div className="container"><p className="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
-        </footer>
-        
-       
-   </>     
-  );
-}
+    <div className='App'>
 
+<div className=''>
+     <Navbar bg="dark" variant='dark' expand="lg">
+      <Container>
+        <Navbar.Brand href="#home">Start Bootstrap</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">About</Nav.Link>
+            <NavDropdown title="Shop" id="basic-nav-dropdown">
+            
+              <NavDropdown.Item href="/prod.productName">
+                All products
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Popular item</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">
+                New arrivals
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+    <div className='template'>
+      
+      
+    </div>
+    <div className='cart-value'>
+        
+        <Badge bg="success">
+          🛒Cart {count}
+        </Badge>
+        </div>
+        <div className='background'>
+      <marquee width="60%" direction="left" scrollamount="20" height="100px">
+       <h1><i>Buy now 📱📱📱</i></h1>
+     </marquee>
+     <marquee width="60%" direction="right" scrollamount="20" height="100px">
+       <h1><i>Grab<span>50% Offer 🎉🎉🎉</span></i></h1>
+     </marquee>
+      </div>
+      
+      <div className='card-container'>
+       {data.map((prod,idx)=> <Cards
+        key = {idx}
+        idx = {idx}
+        prod={prod}
+        count={count}
+        setCount={setCount}/>      
+  )}
+       
+     </div> 
+     <Stateless/> 
+    
+    </div>
+    </div>
+  );
+    
+  }
+  
+      {/*
+      <Button
+      name="Mybutton"
+      bgClr="yellow"
+      clr="red"
+      onClick={()=>console.log(value)}
+
+      />
+  */}
 
 export default App;
+
+{/*Components - In depth
+Component life cycle
+Stateful and stateless components
+Reusable components 
+Passing dynamic data to component
+Introduction to Hook */}
